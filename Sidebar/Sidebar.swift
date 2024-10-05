@@ -7,9 +7,16 @@
 
 import SwiftUI
 
-struct Sidebar: View {
+struct SideMenu: View {
     @Binding var isSidebarVisible: Bool
-    
+    var sideBarWidth = UIScreen.main.bounds.size.width * 0.7
+    var bgColor: Color =
+          Color(.init(
+                  red: 52 / 255,
+                  green: 70 / 255,
+                  blue: 182 / 255,
+                  alpha: 1))
+
     var body: some View {
         ZStack {
             GeometryReader { _ in
@@ -21,7 +28,21 @@ struct Sidebar: View {
             .onTapGesture {
                 isSidebarVisible.toggle()
             }
+            content
         }
         .edgesIgnoringSafeArea(.all)
+    }
+
+    var content: some View {
+        HStack(alignment: .top) {
+            ZStack(alignment: .top) {
+                bgColor
+            }
+            .frame(width: sideBarWidth)
+            .offset(x: isSidebarVisible ? 0 : -sideBarWidth)
+            .animation(.default, value: isSidebarVisible)
+
+            Spacer()
+        }
     }
 }

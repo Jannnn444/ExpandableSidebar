@@ -39,7 +39,7 @@ struct ContentView: View {
                     }
                     .toolbar {
                         Button {
-                            isSideBarOpened.toggle()
+                   isSideBarOpened.toggle()
                         } label: {
                             Label("Toggle SideBar",
                           systemImage: "line.3.horizontal.circle.fill")
